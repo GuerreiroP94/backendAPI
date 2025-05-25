@@ -1,0 +1,117 @@
+# Script para criar toda a estrutura do projeto
+
+# Criar estrutura de diretórios
+$directories = @(
+    PreSystem.StockControl.Frontendpre-system-dashboardpublic,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrcassets,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrccomponentsauth,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrccomponentscommon,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrccomponentslayout,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrccontexts,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrchooks,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrcpages,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrcroutes,
+    PreSystem.StockControl.Frontendpre-system-dashboardsrcservices
+)
+
+foreach ($dir in $directories) {
+    New-Item -ItemType Directory -Force -Path $dir
+    Write-Host Criado $dir -ForegroundColor Green
+}
+
+# Navegar para o diretório do projeto
+Set-Location PreSystem.StockControl.Frontendpre-system-dashboard
+
+# Criar arquivos na raiz
+$rootFiles = @(
+    .env.example,
+    .gitignore,
+    eslint.config.js,
+    index.html,
+    package.json,
+    postcss.config.js,
+    README.md,
+    tailwind.config.js,
+    tsconfig.json,
+    tsconfig.node.json,
+    vite.config.ts
+)
+
+foreach ($file in $rootFiles) {
+    New-Item -ItemType File -Force -Path $file
+    Write-Host Criado arquivo $file -ForegroundColor Yellow
+}
+
+# Criar arquivos em src
+$srcFiles = @(
+    srcApp.css,
+    srcApp.tsx,
+    srcindex.css,
+    srcmain.tsx,
+    srcvite-env.d.ts,
+    srcassetsreact.svg
+)
+
+foreach ($file in $srcFiles) {
+    New-Item -ItemType File -Force -Path $file
+    Write-Host Criado arquivo $file -ForegroundColor Yellow
+}
+
+# Criar arquivos dos componentes
+$componentFiles = @(
+    srccomponentsauthLogin.tsx,
+    srccomponentscommonErrorObserver.tsx,
+    srccomponentslayoutPrivateLayout.tsx,
+    srccomponentslayoutSidebar.tsx
+)
+
+foreach ($file in $componentFiles) {
+    New-Item -ItemType File -Force -Path $file
+    Write-Host Criado arquivo $file -ForegroundColor Yellow
+}
+
+# Criar outros arquivos
+New-Item -ItemType File -Force -Path srccontextsAuthContext.tsx
+New-Item -ItemType File -Force -Path srchooksuseAuth.ts
+
+# Criar arquivos das páginas
+$pageFiles = @(
+    AlertasPage.tsx,
+    CadastrarProdutoPage.tsx,
+    ComponentListPage.tsx,
+    ConfiguracoesPage.tsx,
+    DashboardPage.tsx,
+    DetalhesProdutoPage.tsx,
+    EsqueciSenhaPage.tsx,
+    LoginPage.tsx,
+    MovimentacoesPage.tsx,
+    ProdutosCriadosPage.tsx,
+    UsuariosPage.tsx
+)
+
+foreach ($file in $pageFiles) {
+    New-Item -ItemType File -Force -Path srcpages$file
+    Write-Host Criado arquivo srcpages$file -ForegroundColor Yellow
+}
+
+# Criar arquivos de rotas
+New-Item -ItemType File -Force -Path srcroutesAppRoutes.tsx
+New-Item -ItemType File -Force -Path srcroutesPrivateRoute.tsx
+
+# Criar arquivos de serviços
+$serviceFiles = @(
+    alertService.ts,
+    api.ts,
+    componentService.ts,
+    productService.ts,
+    stockMovementService.ts,
+    userService.ts
+)
+
+foreach ($file in $serviceFiles) {
+    New-Item -ItemType File -Force -Path srcservices$file
+    Write-Host Criado arquivo srcservices$file -ForegroundColor Yellow
+}
+
+Write-Host `nEstrutura criada com sucesso! -ForegroundColor Green
+Write-Host Agora você pode adicionar o conteúdo aos arquivos. -ForegroundColor Cyan
